@@ -17,3 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::apiResource('/admin/customer','api\CustomerController');
+
+Route::get('/admin/search/customer/{field}/{query}','api\CustomerController@search');

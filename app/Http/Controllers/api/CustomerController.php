@@ -46,6 +46,13 @@ class CustomerController extends Controller
         return new CustomerResource($customer);
     }
 
+
+    public function search($field,$query){
+
+        return new CustomerCollection(Customer::where($field,'LIKE',"%$query%")->latest()->paginate(10));
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -94,7 +101,7 @@ class CustomerController extends Controller
     {
         $customer=Customer::findOrFail($id);
         $customer->delete();
-        
+
         return new CustomerResource($customer);
 
     }
